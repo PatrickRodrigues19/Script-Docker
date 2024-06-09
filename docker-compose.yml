@@ -6,8 +6,8 @@ services:
     container_name: mysql-db
     networks:
       - my-bridge
-    # volume:
-    #   - /opt:/var/lib/mysql
+    volume:
+      - /opt:/var/lib/mysql
 
   aplication:
     image: java-image:latest
