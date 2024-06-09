@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  database:
+    image: mysql-image:latest
+    container_name: mysql-db
+    networks:
+      - my-bridge
+    # volume:
+    #   - /opt:/var/lib/mysql
+
+  aplication:
+    image: java-image:latest
+    container_name: java-app
+    networks:
+      - my-bridge
+    depends_on:
+      - database
+    command: ["java","-jar","/app/java/jar-conecta-1.0-SNAPSHOT-jar-with-dependencies.jar"]
+
+networks:
+  my-bridge:
+    driver: bridge
